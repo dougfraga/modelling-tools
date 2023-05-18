@@ -9,7 +9,7 @@ import geopandas as gpd
 from shapely import geometry
 
 # Define file name
-filename = 'batimetria_marinha.xyz'
+filename = 'DTM_BR_LEPLAC_FEV23_1000m.xyz'
 
 # Define column names and import file 
 colnames = ['E', 'N', 'Depth']
