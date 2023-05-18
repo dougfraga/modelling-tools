@@ -8,6 +8,8 @@ import pandas as pd
 import geopandas as gpd
 from shapely import geometry
 
+# Define file name
+filename = 'batimetria_marinha.xyz'
 
 # Define column names and import file 
 colnames = ['E', 'N', 'Depth']
@@ -48,5 +50,14 @@ subset['Depth'] = subset['Depth'] * -1
 subset = subset[['Longitude', 'Latitude', 'Depth']]
 
 # Export results
-subset.to_csv('batimetria_marinha.xyz', encoding='utf-8', sep=' ', index_label=False, index=False)
+subset.to_csv(filename, encoding='utf-8', sep=' ', header=False, index=False)
+
+# Insert MOHID keywords <begin_xyz> and <end_xyz>
+file = open(filename, 'a')
+file.write('<end_xyz>')
+line = '<begin_xyz>'
+with open(filename, 'r+') as file: 
+    file_data = file.read() 
+    file.seek(0, 0) 
+    file.write(line + '\n' + file_data)
 
